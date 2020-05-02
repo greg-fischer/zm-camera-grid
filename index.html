@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cam Wall</title>
+
+
+<meta HTTP-EQUIV="refresh" name="description" id="metaTagRefresh" content="900">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/fontawesome.min.css" 
+	integrity="sha256-CuUPKpitgFmSNQuPDL5cEfPOOJT/+bwUlhfumDJ9CI4=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/regular.min.css" integrity="sha256-gMsb9FH68ht7+1zJa264ijXvTJotVJiDn+OCgWfuaOk=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/solid.min.css" integrity="sha256-pIAzc/BIIo/hSvtNEDIiMTBtR9EfK3COmnH2pt8cPDY=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/v4-shims.min.css" integrity="sha256-wN7QJaqAwQ03kgUhyN4EU2phRdDkLrQYbFe0EvpQ60U=" crossorigin="anonymous" />
+
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/fontawesome.min.js" 
+	integrity="sha256-NP9NujdEzS5m4ZxvNqkcbxyHB0dTRy9hG13RwTVBGwo=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/regular.min.js" integrity="sha256-H0NvRuA8S2idTs4I6NzvHRkonlIQNO9wGutAM0//9YU=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/solid.min.js" integrity="sha256-UM1HRu0Wd16k4L5wgrk17BYWzKkjZSe0BYr5T5qw2Ww=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/v4-shims.min.js" integrity="sha256-prFmieX9aRVhOV/ldXGklUUhS7NRBQUijQU4HcdnO8Q=" crossorigin="anonymous"></script>
+
+
+
+
+<style>
+body {
+	background-color:#1d2630;
+	margin-top: 10px;
+}
+
+.wallContainer {
+	margin: 0 auto;
+	width: 96%;
+	height: 100%;
+	text-align: center;
+}
+.monBox {
+	
+	position: relative;
+	white-space: nowrap;
+	display: inline-block;
+	margin: 0;
+	/* margin: -1px auto 0 auto; */
+	margin-bottom: 8px;
+	padding: 2px;
+	
+	vertical-align: middle;
+	background-color:#2e3c4e85;
+	/* line-height: 1; */
+}
+.monBoxGridItem {
+	border: 1px solid #394960;
+	max-height: 100%;
+	object-fit: contain;
+	overflow: hidden;
+	
+}
+
+.vidSrc {
+	display: block;
+	width: 100% !important;
+	height: auto !important;
+	border: 0px;
+	padding: 0px;
+	padding-bottom: 5px;
+	margin: 0;
+	/* border: 1px solid #999; */
+	/* vertical-align: middle; */
+	
+}
+.vidSrcGridItem {
+
+
+}
+
+.monitorCaption {
+	background-color: #262626;
+	color: #8c8c8c;
+	font-size: 0.5em;
+}
+
+.monBoxCol1 {
+	width: calc(94vw);
+	height: calc(94vw * 0.75);
+	overflow: hidden;
+}
+.monBoxCol2 {
+	width: calc( (96vw) / 2 - 12px);
+	height: calc( ((96vw) / 2 - 12px) * 0.75);
+	overflow: hidden;
+}
+.monBoxCol3 {
+	width: calc( (96vw) / 3 - 12px);
+	height: calc( ((96vw) / 3 - 12px) * 0.75);
+	overflow: hidden;
+}
+
+.monBoxCol4 {
+	width: calc( (96vw) / 4 - 8px);
+	height: calc( ((96vw) / 4 - 8px) * 0.75);
+	overflow: hidden;
+}
+.monBoxCol5 {
+	width: calc( (96vw) / 5 - 8px);
+	height: calc( ((96vw) / 5 - 8px) * 0.75);
+	overflow: hidden;
+}
+.monBoxCol6 {
+	width: calc( (96vw) / 6 - 8px);
+	height: calc( ((96vw) / 6 - 8px) * 0.75);
+	overflow: hidden;
+}
+.monBoxCol7 {
+	width: calc( (96vw) / 7 - 8px);
+	height: calc( ((96vw) / 7 - 8px) * 0.75);
+	overflow: hidden;
+}
+.monBoxCol8 {
+	width: calc( (96vw) / 8 - 8px);
+	height: calc( ((96vw) / 8 - 8px) * 0.75);
+	overflow: hidden;
+}
+.monBoxCol9 {
+	width: calc( (96vw) / 9 - 8px);
+	height: calc( ((96vw) / 9 - 8px) * 0.75);
+	overflow: hidden;
+}
+
+.monBoxColCIF1 {
+	width: calc(94vw);
+	height: calc(94vw * 0.68);
+	overflow: hidden;
+}
+.monBoxColCIF2 {
+	width: calc( (96vw) / 2 - 12px);
+	height: calc( ((96vw) / 2 - 12px) * 0.68);
+	overflow: hidden;
+}
+.monBoxColCIF3 {
+	width: calc( (96vw) / 3 - 12px);
+	height: calc( ((96vw) / 3 - 12px) * 0.68);
+	overflow: hidden;
+}
+
+.monBoxColCIF4 {
+	width: calc( (96vw) / 4 - 8px);
+	height: calc( ((96vw) / 4 - 8px) * 0.68);
+	overflow: hidden;
+}
+.monBoxColCIF5 {
+	width: calc( (96vw) / 5 - 8px);
+	height: calc( ((96vw) / 5 - 8px) * 0.68);
+	overflow: hidden;
+}
+.monBoxColCIF6 {
+	width: calc( (96vw) / 6 - 8px);
+	height: calc( ((96vw) / 6 - 8px) * 0.68);
+	overflow: hidden;
+}
+.monBoxColCIF7 {
+	width: calc( (96vw) / 7 - 8px);
+	height: calc( ((96vw) / 7 - 8px) * 0.68);
+	overflow: hidden;
+}
+.monBoxColCIF8 {
+	width: calc( (96vw) / 8 - 8px);
+	height: calc( ((96vw) / 8 - 8px) * 0.68);
+	overflow: hidden;
+}
+.monBoxColCIF9 {
+	width: calc( (96vw) / 9 - 8px);
+	height: calc( ((96vw) / 9 - 8px) * 0.68);
+	overflow: hidden;
+}
+
+.monBoxColWidescreen1 {
+	width: calc(94vw);
+	height: calc(94vw * 0.56);
+	overflow: hidden;
+}
+.monBoxColWidescreen2 {
+	width: calc( (96vw) / 2 - 12px);
+	height: calc( ((96vw) / 2 - 12px) * 0.56);
+	overflow: hidden;
+}
+.monBoxColWidescreen3 {
+	width: calc( (96vw) / 3 - 12px);
+	height: calc( ((96vw) / 3 - 12px) * 0.56);
+	overflow: hidden;
+}
+
+.monBoxColWidescreen4 {
+	width: calc( (96vw) / 4 - 8px);
+	height: calc( ((96vw) / 4 - 8px) * 0.56);
+	overflow: hidden;
+}
+.monBoxColWidescreen5 {
+	width: calc( (96vw) / 5 - 8px);
+	height: calc( ((96vw) / 5 - 8px) * 0.56);
+	overflow: hidden;
+}
+.monBoxColWidescreen6 {
+	width: calc( (96vw) / 6 - 8px);
+	height: calc( ((96vw) / 6 - 8px) * 0.56);
+	overflow: hidden;
+}
+.monBoxColWidescreen7 {
+	width: calc( (96vw) / 7 - 8px);
+	height: calc( ((96vw) / 7 - 8px) * 0.56);
+	overflow: hidden;
+}
+.monBoxColWidescreen8 {
+	width: calc( (96vw) / 8 - 8px);
+	height: calc( ((96vw) / 8 - 8px) * 0.56);
+	overflow: hidden;
+}
+.monBoxColWidescreen9 {
+	width: calc( (96vw) / 9 - 8px);
+	height: calc( ((96vw) / 9 - 8px) * 0.56);
+	overflow: hidden;
+}
+
+
+
+
+.monitorView {
+	/* display:inline; */
+	/* margin: 20px auto; */
+	/* width: 100%; */
+	/* height: 100%; */
+	
+	/* border-collapse: collapse; */
+	/* width: 85vw; */
+	/* max-width: 85vw; */
+	
+	text-align: center;
+	
+}
+.monBoxSingle {
+	/* position: relative;
+	 */
+	 /* display:inline-block; */
+	/* border: 1px solid green; */
+	/* width: auto; */
+	/* width: 85vw; */
+	/* max-width: 85vw; */
+	padding: 5px;
+	/* margin: 0; */
+	margin: -1px auto 0 auto;
+
+	/* width: 100%;
+	height: 100%; */
+	max-width: 85vw;
+	/* max-width: 100%; */
+	/* max-height: 80vh; */
+	/* object-fit: contain; */
+	
+}
+.monBoxSingle > .vidSrc {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	max-height: 90vh;
+	max-width: 85vw;
+	object-fit: scale-down;
+	
+}
+
+.btnContainer {
+
+}
+
+.btnBar {
+	position: absolute;
+	bottom: 3px;
+	left: 0px;
+	height: 38px;
+	margin: 2px;
+	padding: 2px;
+	
+	
+}
+.btnBar > a  {
+	color: #cecdcd;
+	background-color: #222;
+	font-size: 1em;
+	opacity: 0.4;
+	padding: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.btnBar > a:hover  {
+	color: white;
+	background-color: #222;
+	font-size: 1em;
+	opacity: 1;
+}
+
+.monBoxSingle .btnBar {
+	top: 15px;
+	left: 15px;
+	height: 70px;
+}
+.monBoxSingle .btnBar > a {
+	font-size: 1.3em;
+	padding: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+	opacity: 0.75;
+}
+</style>
+</head>
+<body>
+
+<div class="d-none" >bar</div>
+<!-- ko if: error --> 
+<div class="alert alert-danger w-50 p-3 m-10" role="alert"  data-bind="text: errorMessage"></div>
+<!-- /ko -->
+<!-- ko if: !$root.monitorView() -->
+	<!-- ko if: monitorData -->
+	<div class=" wallContainer "  data-bind="visible: showGrid, foreach: app.monitorData">
+		<div class="monBox monBoxGridItem no-gutters btnContainer" data-bind="class: app.columnClass">
+			<!-- ko if: app.showCaptions -->
+				<div class="monitorCaption no-gutters" >
+					<span data-bind="text: $data.Monitor.Name"></span>
+					<span data-bind="text: app.columnClass"></span>
+				</div>
+			<!-- /ko -->
+			
+			<img class="vidSrc vidSrcGridItem no-gutters" style="width: calc(100% - 4px);" data-bind="attr:{src:  imgSrc(app.hostUrl(), app.cgiPath(), $index(), $data)}" />
+			<div class="btnBar">
+				<a href="#" class="btn btn-xs" title="Open" 
+					data-bind="attr: {href: '#showMonitor=' + $data.Monitor.Id}, click: $parent.doSomething">
+					<i class="fas fa-external-link-square-alt"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- /ko -->
+<!-- /ko -->
+<!-- ko if: $root.monitorView() -->
+<div class=" monitorView">
+	<div class=" monBoxSingle  btnContainer" >
+
+		<img class="vidSrc"   data-bind="attr:{src:  app.currentMonitorUrl}" />
+		<div class="btnBar">
+			<a href="#" class="btn btn-xs" title="Close" 
+				data-bind="attr: {href: '#'}, click: $root.closeMonitorView">
+				<i class="fas fa-arrow-alt-circle-left"></i>
+			</a>
+		  </div>
+	</div>
+</div>
+<!-- /ko -->
+
+</body>
+</html>
+
+<script>
+var serverConfig = {};
+var columns = 3;
+
+
+function portStart(){
+	return app.serverMultiPort();
+}
+function authString(){
+	// return '<?php //echo $uriAuthStr; ?>';
+	return "&user=" + app.zmUser() + "&pass=" + app.zmPass();
+}
+
+function multiPort(index){
+	return portStart() + index;
+}
+function uriString(id, newScale){
+	var scale = 100;
+	if(newScale){
+		scale = newScale;
+	}
+	return '/nph-zms?scale=' + scale + '&mode=jpeg&maxfps=7&buffer=1000&monitor=' + id + authString();
+}
+// url: host() + ':' + multiPort($index) + uriString()
+function imgSrc(host, cgiPath, idx, obj){
+
+	var scale = app.gridScale();
+
+	var output;
+	output = host + ':';
+	output = output + multiPort(idx) + cgiPath + uriString(obj.Monitor.Id, scale);
+
+	return output;
+}
+
+
+
+function getConfigFile(){
+	return new Promise( function(resolve, reject){
+			return axios.get(`config.local.json?timestamp=${new Date().getTime()}`, {crossDomain: true})
+			.then(function (response) {
+				// handle success
+				// console.log(response);
+				resolve(response);
+			})
+			.catch(function (error) {
+				// handle error
+				// console.log(error);
+				reject(error);
+			})
+			.then(function () {
+				// always executed
+
+			});
+	});
+};
+
+
+/*
+Access-Control-Allow-Origin: * ,Access-Control-Allow-Credentials: true , Access-Control-Allow-Methods: GET, POST, OPTIONS
+Access-Control-Allow-Origin,Access-Control-Allow-Credentials,Access-Control-Allow-Methods
+*/
+
+function getMonitors(url){
+	return new Promise( function(resolve, reject){
+			// return axios.get(url, {"crossDomain": true})
+			return axios({
+				method: 'get',
+				url: url,
+				// data: post_params,
+				withCredentials: true,
+				crossdomain: true,
+				// headers: headers,
+			}).then(function (response) {
+				// handle success
+				// console.log(response);
+				resolve(response);
+			})
+			.catch(function (error) {
+				// handle error
+				// console.log(error);
+				reject(error);
+			})
+			.then(function () {
+				// always executed
+
+			});
+	});
+};
+
+
+
+function ViewModel() {
+	var self = this;
+
+	// self.firstName = ko.observable("john");
+	// self.surname = ko.observable("doe");
+
+	// self.fullname = ko.computed(function() {
+	// 	return self.firstName() + " " + self.surname();
+	// });
+
+	// Ratio values : standard, cif, widescreen
+	self.gridRatio = ko.observable('standard');
+	self.gridScale = ko.observable(50);
+	self.showGrid = ko.observable(true);
+
+	// how often to reload the page automatically 
+	self.pageReloadInterval = ko.observable(900);
+
+	self.viewMonitorId = ko.observable(0);
+	self.currentMonitorData = ko.observable(null);
+	self.currentMonitorUrl = ko.observable('');
+
+	self.serverMultiPort = ko.observable(30000);
+
+	self.zmUser = ko.observable();
+	self.zmPass = ko.observable();
+
+	self.hostUrl = ko.observable();
+	self.apiPath = ko.observable();
+	self.cgiPath = ko.observable();
+	self.wallName = ko.observable();
+
+
+	self.showCaptions = ko.observable(true);
+
+	self.columns = ko.observable();
+
+	self.serverConfig = {};
+
+	self.monitorData =  ko.observableArray([]);
+	self.error = ko.observable(false);
+	self.errorMessage = ko.observable("");
+
+	self.columnClass = ko.computed(function(){
+		var classPrefix = 'monBoxCol';
+		if(self.gridRatio() == 'cif'){
+			classPrefix = 'monBoxColCIF';
+		}
+		else if(self.gridRatio() == 'widescreen'){
+			classPrefix = 'monBoxColWidescreen';
+		}
+		return `${classPrefix}${self.columns()}`;
+	});
+
+
+	self.doSomething = function(data, event){
+		console.log("Doing something");
+		console.log(data);
+		console.log(event);
+		self.showGrid(false);
+
+		// TODO: Maybe calculate possible scaling based on monitor dims
+		var scale = 100;
+		var output = '';
+		output = output + self.hostUrl() + ':';
+		output = output + multiPort(parseInt(data.Monitor.Id)) + self.cgiPath() + uriString(data.Monitor.Id, scale);
+		console.log(output);
+		self.currentMonitorUrl(output);
+		self.viewMonitorId(data.Monitor.Id);
+		self.currentMonitorData(data);
+		
+	};
+
+	self.closeMonitorView = function(data, event){
+		console.log("Doing something");
+		console.log(data);
+		console.log(event);
+		self.viewMonitorId(0);
+		self.currentMonitorData(null);
+		self.showGrid(true);
+		
+	};
+
+	self.monitorView = function(){
+		console.log(self.showGrid());
+		console.log(self.viewMonitorId());
+		if(self.showGrid() == false && self.viewMonitorId() > 0){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	self.updatePageReloadInterval = function(){
+		try{
+			document.getElementById("metaTagRefresh").setAttribute("content", app.pageReloadInterval());
+		} catch(e) {
+			console.log(e);
+		}
+	}
+
+
+}
+
+var app = new ViewModel();
+
+
+
+function setup(){
+	// get config
+	// document.title = _.get(serverConfig, "wallName", 'Cam Wall');
+	app.wallName(_.get(serverConfig, "wallName", 'Cam Wall'));
+	document.title = app.wallName();
+
+	app.zmUser(_.get(serverConfig, "zmUser"));
+	app.zmPass(_.get(serverConfig, "zmPass"));
+	app.serverMultiPort(_.get(serverConfig, "multiPort"));
+
+	app.hostUrl(_.get(serverConfig, "hostUrl"));
+	app.apiPath(_.get(serverConfig, "apiPath", '/zm/api'));
+	app.cgiPath(_.get(serverConfig, "cgiPath", '/zm/cgi-bin'));
+
+	app.pageReloadInterval(_.get(serverConfig, "pageReloadInterval", 900));
+	app.updatePageReloadInterval();
+	
+
+
+	app.gridScale(_.get(serverConfig, "gridScale", 50));
+	app.gridRatio(_.get(serverConfig, "gridRatio", 'standard'));
+	columns = _.get(serverConfig, "monitorsPerRow", 3);
+	app.showCaptions(_.get(serverConfig, "showCaptions", true));
+	app.serverConfig = serverConfig;
+	app.columns(columns);
+}
+
+
+
+
+
+
+var docReady = function(){
+	
+	getConfigFile().then(function(d){
+		console.log(d);
+		if(_.has(d , "data.hostUrl") && _.has(d , "data.monitors")){
+			serverConfig = d.data;
+
+			setup();
+			// app.getMonitors();
+			var monitorsUrl = app.hostUrl() + app.apiPath() + "/monitors.json?" + authString() + `&timestamp=${new Date().getTime()}`;
+
+			getMonitors(monitorsUrl).then(function(d){
+				var allTypeMonitors = 'vw-wall-';
+				var namePrefix = allTypeMonitors;
+				// var configMonitors = [
+				// 	'vw-wall-mainentout', 'vw-wall-shippark', 'vw-wall-ship1', 'vw-wall-le0', 'vw-wall-frontcounter'
+				// , 'vw-wall-le1', 'vw-wall-secorner1', 'vw-wall-secorner2', 'vw-wall-backtrain', 'vw-wall-guncage1'
+				// ];
+				var myMonitors = [];
+
+				console.log(("got to here!"));
+				console.log(d);
+				if(_.has(d, 'data.monitors')){
+					console.log("I HAVE MONITORS!");
+					myMonitors = _.filter(d.data.monitors, function(o){
+						if(_.has(o, 'Monitor.Name') && _.indexOf(serverConfig.monitors, o.Monitor.Name) >= 0){
+							app.monitorData.push(o);
+							return o;
+						}
+					});
+
+					// myMonitors = _.filter(d.data.monitors, function(o){
+					// 	if(_.has(o, 'Monitor.Name') && _.includes(o.Monitor.Name, allTypeMonitors)){
+					// 		return o;
+					// 	}
+					// });
+
+					console.log(myMonitors);
+					// app.monitorData.push(myMonitors);
+				}
+			}).catch(function(e){
+				console.log(e);
+				app.error = true;
+				app.errorMessage = e.message;
+			});
+
+			
+		}
+		else {
+			app.error = true;
+			app.errorMessage = "No monitors defined in config.json";
+		}
+	}).catch(function(e){
+		console.log(e);
+		app.error = true;
+		app.errorMessage = "No config.json - " + e.message;
+	});
+
+
+	ko.applyBindings(app);
+	
+
+
+	
+
+
+// setTimeout(function () {
+	// 	window.location.reload(1);
+	// }, 300000);
+};
+
+if (
+    document.readyState === "complete" ||
+    (document.readyState !== "loading" && !document.documentElement.doScroll)
+) {
+	docReady();
+} else {
+  document.addEventListener("DOMContentLoaded", docReady);
+}
+
+if (!String.prototype.startsWith) {
+	String.prototype.startsWith = function(search, pos){
+		return this.slice(pos || 0, search.length) === search;
+	};
+}
+
+
+</script>

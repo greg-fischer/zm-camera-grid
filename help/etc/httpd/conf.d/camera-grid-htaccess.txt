@@ -1,0 +1,17 @@
+# Make sure you have allow override enabled 
+# in apache and add this to a .htaccess
+# file in your wall/grid folder
+# This will prevent index views 
+# and DENY access to all except the defined IP ranges.
+# Extra credit: host grid pages in long random named folders
+# example: /var/www/html/grid/random-words-boat-motor-pump-action/grid1
+# Makes long , random links, DO NOT SHARE
+# URL would be: https://myserver.tld/grid/random-words-boat-motor-pump-action/grid1
+
+Options -Indexes
+
+Order Deny,Allow
+Deny from all
+Allow from 192.168.0
+Allow from 10.1.10
+Allow from 123.123.123.0

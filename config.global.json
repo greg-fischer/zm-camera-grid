@@ -1,0 +1,17 @@
+{
+	"zmUser": "",
+	"zmPass": "",
+	"hostUrl": "",
+	"apiPath": "/zm/api",
+	"cgiPath": "/cgi-bin-zm",
+	"multiPort": 30000,
+	"wallName": "Wall",
+	"showCaptions": true,
+	"monitorsPerRow": 3,
+	"monitors": [
+		
+	]
+
+}
+
+
