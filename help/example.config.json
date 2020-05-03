@@ -1,0 +1,21 @@
+{
+	"zmUser": "your-user",
+	"zmPass": "your-pass",
+	"hostUrl": "https://your-server-name",
+	"apiPath": "/zm/api",
+	"cgiPath": "/zm/cgi-bin",
+	"multiPort": 30000,
+	"pageReloadInterval": 900,
+	"wallName": "My Camera Grid",
+	"gridScale": 35,
+	"showCaptions": false,
+	"monitorsPerRow": 5,
+	"gridRatio": "cif",
+	"monitors": [
+		"cam1"
+		, "cam2"
+		, "cam3"
+		, "cam4"
+		, "cam5"
+	]
+}
